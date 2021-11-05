@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/matrixApp/include.iml" filepath="$PROJECT_DIR$/matrixApp/include.iml" />
+      <module fileurl="file://$PROJECT_DIR$/matrixApp/matrixApp.iml" filepath="$PROJECT_DIR$/matrixApp/matrixApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/matrixLib/matrixLib.iml" filepath="$PROJECT_DIR$/matrixLib/matrixLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projectMatrix.iml" filepath="$PROJECT_DIR$/projectMatrix.iml" />
+    </modules>
+  </component>
+</project>
