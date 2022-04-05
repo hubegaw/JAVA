@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.lang.Math;
 
-public class Triangle implements FiguresInterface {
+public class Triangle {
     List<Point> points;
     Scanner sc;
     private double circuit, area;
