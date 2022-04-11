@@ -1,13 +1,16 @@
 package com.company.Figures.Point;
 
+import java.util.Scanner;
+
 public class Point implements PointInterface{
     private String pointName;
     private double x,y;
 
     public Point() {
         this.pointName = "";
-        this.x = 0.0;
-        this.y = 0.0;
+    }
+    public boolean EqualsTo(Point p) {
+        return p.pointName.equals(this.pointName) && (p.x == this.x) && (p.y == this.y);
     }
 
     public void setPointCoordinates(double x, double y) {
@@ -15,7 +18,9 @@ public class Point implements PointInterface{
         this.y = y;
     }
 
-    public void setPointName(String pointName) { this.pointName = pointName; }
+    public void setPointName(String pointName) {
+        this.pointName = pointName;
+    }
 
     public double getPointX() {
         return this.x;
@@ -29,4 +34,7 @@ public class Point implements PointInterface{
         return pointName;
     }
 
+    public String parseToString() {
+        return this.getPointName() + "=(" + this.getPointX() + ", " + this.getPointY() + ")";
+    }
 }

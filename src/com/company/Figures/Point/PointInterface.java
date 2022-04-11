@@ -9,4 +9,5 @@ public interface PointInterface {
     public double getPointY();
     public double[] getCoordinates();
     public String getPointName();
+
 }

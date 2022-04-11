@@ -1,17 +1,12 @@
 package com.company.Figures;
 
-import com.company.Figures.Triangle.Triangle;
+import com.company.view.AppViewConsole;
 
 public class Figures {
+
     public static void main(String[] args) {
+        AppViewConsole view = new AppViewConsole();
 
-        Triangle triangle = new Triangle();
-
-        triangle.setTriangle();
-        triangle.getTriangle();
-        System.out.println("obwód = " + triangle.circuit());
-        triangle.changePoint();
-        triangle.getTriangle();
+        view.mainMenu();
     }
-
 }
