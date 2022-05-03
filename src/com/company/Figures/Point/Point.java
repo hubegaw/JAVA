@@ -1,7 +1,5 @@
 package com.company.Figures.Point;
 
-import java.util.Scanner;
-
 public class Point implements PointInterface{
     private String pointName;
     private double x,y;
