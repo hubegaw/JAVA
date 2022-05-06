@@ -9,7 +9,8 @@ public class ShuntingYard implements IShuntingYard {
 
     @Override
     public ArrayList<String> transformExpressionToPRN(ArrayList<String> input) {
-
+        stack.clear();
+        output.clear();
         for (String s : input) {
             if (checkIfSymbolIsNumber(s)) {
                 output.add(s);

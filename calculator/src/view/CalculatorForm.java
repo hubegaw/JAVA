@@ -4,6 +4,7 @@ import PolishReverseNotationAlgorithm.IPolishReverseNotation;
 import PolishReverseNotationAlgorithm.PolishReverseNotation;
 import ShuntingYardAlgorithm.IShuntingYard;
 import ShuntingYardAlgorithm.ShuntingYard;
+import exceptions.DivisionByZero;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -38,6 +39,7 @@ public class CalculatorForm {
     private IPolishReverseNotation prn = new PolishReverseNotation();
     private final IShuntingYard sy = new ShuntingYard();
     private String number = "";
+    private String result = "";
     StringBuilder expression = new StringBuilder("");
     private final ArrayList<String> input = new ArrayList<>();
     private int countLeftBrackets = 0;
@@ -138,7 +140,14 @@ public class CalculatorForm {
         plus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pushNumberToInput();
+                if(!result.equals("")) {
+                    input.add(result);
+                    expression.append(result);
+                    result = "";
+                } else {
+                    pushNumberToInput();
+
+                }
                 validateOperator(plus.getText());
                 input.add(plus.getText());
                 textArea.setText(String.valueOf(expression));
@@ -147,7 +156,13 @@ public class CalculatorForm {
         minus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pushNumberToInput();
+                if(!result.equals("")) {
+                    input.add(result);
+                    expression.append(result);
+                    result = "";
+                } else {
+                    pushNumberToInput();
+                }
                 validateOperator(minus.getText());
                 input.add(minus.getText());
                 textArea.setText(String.valueOf(expression));
@@ -156,7 +171,14 @@ public class CalculatorForm {
         multiplicate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pushNumberToInput();
+                if(!result.equals("")) {
+                    input.add(result);
+                    expression.append(result);
+                    result = "";
+                } else {
+                    pushNumberToInput();
+
+                }
                 validateOperator(multiplicate.getText());
                 input.add(multiplicate.getText());
                 textArea.setText(String.valueOf(expression));
@@ -165,7 +187,13 @@ public class CalculatorForm {
         divide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pushNumberToInput();
+                if(!result.equals("")) {
+                    input.add(result);
+                    expression.append(result);
+                    result = "";
+                } else {
+                    pushNumberToInput();
+                }
                 validateOperator(divide.getText());
                 input.add(divide.getText());
                 textArea.setText(String.valueOf(expression));
@@ -197,7 +225,13 @@ public class CalculatorForm {
                 if(!input.isEmpty() && !expression.isEmpty()) {
                     if(checkIfNumber(expression.charAt(expression.length()-1)))
                         pushNumberToInput();
-                    textArea.setText(String.valueOf(prn.getSolution(sy.transformExpressionToPRN(input))));
+                    try {
+                        result = String.valueOf(prn.getSolution(sy.transformExpressionToPRN(input)));
+                        textArea.setText(result);
+                    } catch (DivisionByZero ex) {
+                        textArea.setText(ex.getMessage());
+                        result = "";
+                    }
                     clearInput();
                 }
             }
@@ -213,6 +247,7 @@ public class CalculatorForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearInput();
+                result = "";
                 textArea.setText(String.valueOf(expression));
             }
         });
@@ -231,7 +266,8 @@ public class CalculatorForm {
 
     private void validateDotButton() {
         expressionSize = expression.length();
-        lastSymbol = expression.charAt(expressionSize - 1);
+        if(expressionSize != 0)
+            lastSymbol = expression.charAt(expressionSize - 1);
         if(!expression.isEmpty() && lastSymbol != '.' && !number.contains(".") && !number.isEmpty()) {
             number += dot.getText();
             expression.append(dot.getText());
@@ -279,15 +315,10 @@ public class CalculatorForm {
         expressionSize = expression.length();
         if(expressionSize != 0) {
             lastSymbol = expression.charAt(expressionSize-1);
-            if (!checkIfNumber(lastSymbol)) {
-                number = input.get(input.size()-1);
-                if(lastSymbol == ')') countRightBrackets -= 1;
-                if(lastSymbol == '(') countRightBrackets -= 1;
-            } else {
+            if (checkIfNumber(lastSymbol) || lastSymbol == '.') {
                 number = number.substring(0,number.length()-1);
+                expression.deleteCharAt(expressionSize-1);
             }
-            expression.deleteCharAt(expressionSize-1);
-
         }
     }
 
