@@ -7,10 +7,10 @@ import ShuntingYardAlgorithm.ShuntingYard;
 import exceptions.DivisionByZero;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CalculatorForm {
     private JPanel mainPanel;
@@ -46,6 +46,7 @@ public class CalculatorForm {
     private int countRightBrackets = 0;
     private int expressionSize = 0;
     private char lastSymbol;
+    private boolean resultIsDisplayed = false;
 
     private static CalculatorForm form;
 
@@ -140,13 +141,13 @@ public class CalculatorForm {
         plus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!result.equals("")) {
+                if(resultIsDisplayed) {
+                    resultIsDisplayed = false;
                     input.add(result);
                     expression.append(result);
                     result = "";
-                } else {
+                } else if(!number.isEmpty()){
                     pushNumberToInput();
-
                 }
                 validateOperator(plus.getText());
                 input.add(plus.getText());
@@ -156,11 +157,12 @@ public class CalculatorForm {
         minus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!result.equals("")) {
+                if(resultIsDisplayed) {
+                    resultIsDisplayed = false;
                     input.add(result);
                     expression.append(result);
                     result = "";
-                } else {
+                } else if(!number.isEmpty()) {
                     pushNumberToInput();
                 }
                 validateOperator(minus.getText());
@@ -171,11 +173,12 @@ public class CalculatorForm {
         multiplicate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!result.equals("")) {
+                if(resultIsDisplayed) {
+                    resultIsDisplayed = false;
                     input.add(result);
                     expression.append(result);
                     result = "";
-                } else {
+                } else if(!number.isEmpty()) {
                     pushNumberToInput();
 
                 }
@@ -187,11 +190,12 @@ public class CalculatorForm {
         divide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!result.equals("")) {
+                if(resultIsDisplayed) {
+                    resultIsDisplayed = false;
                     input.add(result);
                     expression.append(result);
                     result = "";
-                } else {
+                } else if(!number.isEmpty()) {
                     pushNumberToInput();
                 }
                 validateOperator(divide.getText());
@@ -214,25 +218,26 @@ public class CalculatorForm {
             public void actionPerformed(ActionEvent e) {
                 if(checkIfNumber(expression.charAt(expression.length()-1)))
                     pushNumberToInput();
-                input.add(rightBracket.getText());
                 validateBracket(rightBracket.getText());
+                input.add(rightBracket.getText());
                 textArea.setText(String.valueOf(expression));
             }
         });
         equalsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!input.isEmpty() && !expression.isEmpty()) {
-                    if(checkIfNumber(expression.charAt(expression.length()-1)))
+                lastSymbol = expression.charAt(expression.length()-1);
+                if(!input.isEmpty() && !expression.isEmpty() && lastSymbol != '+' && lastSymbol != '-' && lastSymbol != '*' && lastSymbol != '/') {
+                    if(checkIfNumber(lastSymbol))
                         pushNumberToInput();
                     try {
                         result = String.valueOf(prn.getSolution(sy.transformExpressionToPRN(input)));
                         textArea.setText(result);
+                        clearInput();
                     } catch (DivisionByZero ex) {
                         textArea.setText(ex.getMessage());
-                        result = "";
                     }
-                    clearInput();
+                    resultIsDisplayed = true;
                 }
             }
         });
@@ -313,7 +318,7 @@ public class CalculatorForm {
 
     private void validateBackOperation() {
         expressionSize = expression.length();
-        if(expressionSize != 0) {
+        if(expressionSize != 0 && !input.isEmpty()) {
             lastSymbol = expression.charAt(expressionSize-1);
             if (checkIfNumber(lastSymbol) || lastSymbol == '.') {
                 number = number.substring(0,number.length()-1);
@@ -334,8 +339,13 @@ public class CalculatorForm {
         form = new CalculatorForm();
         mainFrame.setContentPane(form.mainPanel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setResizable(false);
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    }
 }
