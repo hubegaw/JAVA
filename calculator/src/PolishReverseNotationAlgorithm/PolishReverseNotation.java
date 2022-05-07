@@ -35,6 +35,6 @@ public class PolishReverseNotation implements IPolishReverseNotation {
             }
         }
 
-        return Double.parseDouble(stack.pop());
+        return ((long)(Double.parseDouble(stack.pop())*1e8))/1e8;
     }
 }

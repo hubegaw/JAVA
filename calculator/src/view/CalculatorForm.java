@@ -36,11 +36,12 @@ public class CalculatorForm {
     private JButton rightBracket;
     private JButton leftBracket;
 
+    static JFrame mainFrame = new JFrame("Calculator");
     private IPolishReverseNotation prn = new PolishReverseNotation();
     private final IShuntingYard sy = new ShuntingYard();
     private String number = "";
     private String result = "";
-    StringBuilder expression = new StringBuilder("");
+    private StringBuilder expression = new StringBuilder("");
     private final ArrayList<String> input = new ArrayList<>();
     private int countLeftBrackets = 0;
     private int countRightBrackets = 0;
@@ -54,6 +55,7 @@ public class CalculatorForm {
         numb_0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ifResultIsDisplayedSetFalseAndClearInput();
                 number += numb_0.getText();
                 expression.append(numb_0.getText());
                 textArea.setText(String.valueOf(expression));
@@ -62,190 +64,237 @@ public class CalculatorForm {
         numb_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_1.getText();
-                expression.append(numb_1.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_1.getText();
+                    expression.append(numb_1.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_2.getText();
-                expression.append(numb_2.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_2.getText();
+                    expression.append(numb_2.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_3.getText();
-                expression.append(numb_3.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_3.getText();
+                    expression.append(numb_3.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_4.getText();
-                expression.append(numb_4.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_4.getText();
+                    expression.append(numb_4.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_5.getText();
-                expression.append(numb_5.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_5.getText();
+                    expression.append(numb_5.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_6.getText();
-                expression.append(numb_6.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_6.getText();
+                    expression.append(numb_6.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_7.getText();
-                expression.append(numb_7.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_7.getText();
+                    expression.append(numb_7.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_8.getText();
-                expression.append(numb_8.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_8.getText();
+                    expression.append(numb_8.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         numb_9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                number += numb_9.getText();
-                expression.append(numb_9.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    number += numb_9.getText();
+                    expression.append(numb_9.getText());
+                    textArea.setText(String.valueOf(expression));
+                }
             }
         });
         dot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                validateDotButton();
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    ifResultIsDisplayedSetFalseAndClearInput();
+                    if(validateDotButton())
+                        textArea.setText(String.valueOf(expression));
+                }
             }
         });
         plus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(resultIsDisplayed) {
-                    resultIsDisplayed = false;
-                    input.add(result);
-                    expression.append(result);
-                    result = "";
-                } else if(!number.isEmpty()){
-                    pushNumberToInput();
+                if (expression.length() < 25) {
+                    if (resultIsDisplayed) {
+                        resultIsDisplayed = false;
+                        input.add(result);
+                        result = "";
+                    } else if (!number.isEmpty()) {
+                        pushNumberToInput();
+                    }
+                    if(validateOperator(plus.getText())) {
+                        input.add(plus.getText());
+                        textArea.setText(String.valueOf(expression));
+                    }
                 }
-                validateOperator(plus.getText());
-                input.add(plus.getText());
-                textArea.setText(String.valueOf(expression));
             }
         });
         minus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(resultIsDisplayed) {
-                    resultIsDisplayed = false;
-                    input.add(result);
-                    expression.append(result);
-                    result = "";
-                } else if(!number.isEmpty()) {
-                    pushNumberToInput();
+                if (expression.length() < 25) {
+                    if (resultIsDisplayed) {
+                        resultIsDisplayed = false;
+                        input.add(result);
+                        result = "";
+                    } else if (!number.isEmpty()) {
+                        pushNumberToInput();
+                    }
+                    if(validateOperator(minus.getText())) {
+                        input.add(minus.getText());
+                        textArea.setText(String.valueOf(expression));
+                    }
                 }
-                validateOperator(minus.getText());
-                input.add(minus.getText());
-                textArea.setText(String.valueOf(expression));
             }
         });
         multiplicate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(resultIsDisplayed) {
-                    resultIsDisplayed = false;
-                    input.add(result);
-                    expression.append(result);
-                    result = "";
-                } else if(!number.isEmpty()) {
-                    pushNumberToInput();
+                if (expression.length() < 25) {
+                    if (resultIsDisplayed) {
+                        resultIsDisplayed = false;
+                        input.add(result);
+                        result = "";
+                    } else if (!number.isEmpty()) {
+                        pushNumberToInput();
 
+                    }
+                    if(validateOperator(multiplicate.getText())) {
+                        input.add(multiplicate.getText());
+                        textArea.setText(String.valueOf(expression));
+                    }
                 }
-                validateOperator(multiplicate.getText());
-                input.add(multiplicate.getText());
-                textArea.setText(String.valueOf(expression));
             }
         });
         divide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(resultIsDisplayed) {
-                    resultIsDisplayed = false;
-                    input.add(result);
-                    expression.append(result);
-                    result = "";
-                } else if(!number.isEmpty()) {
-                    pushNumberToInput();
+                if (expression.length() < 25) {
+                    if (resultIsDisplayed) {
+                        resultIsDisplayed = false;
+                        input.add(result);
+                        result = "";
+                    } else if (!number.isEmpty()) {
+                        pushNumberToInput();
+                    }
+                    if(validateOperator(divide.getText())) {
+                        input.add(divide.getText());
+                        textArea.setText(String.valueOf(expression));
+                    }
                 }
-                validateOperator(divide.getText());
-                input.add(divide.getText());
-                textArea.setText(String.valueOf(expression));
             }
         });
         leftBracket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(checkIfNumber(expression.charAt(expression.length()-1)))
-                    pushNumberToInput();
-                validateBracket(leftBracket.getText());
-                input.add(leftBracket.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    if (expression.length() != 0 && isNumber(String.valueOf(expression.charAt(expression.length() - 1))))
+                        pushNumberToInput();
+                    if(validateBracket(leftBracket.getText())) {
+                        input.add(leftBracket.getText());
+                        textArea.setText(String.valueOf(expression));
+                    }
+                }
             }
         });
         rightBracket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(checkIfNumber(expression.charAt(expression.length()-1)))
-                    pushNumberToInput();
-                validateBracket(rightBracket.getText());
-                input.add(rightBracket.getText());
-                textArea.setText(String.valueOf(expression));
+                if (expression.length() < 25) {
+                    if (isNumber(String.valueOf(expression.charAt(expression.length() - 1))))
+                        pushNumberToInput();
+                    if(validateBracket(rightBracket.getText())) {
+                        input.add(rightBracket.getText());
+                        textArea.setText(String.valueOf(expression));
+                    }
+                }
             }
         });
         equalsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lastSymbol = expression.charAt(expression.length()-1);
-                if(!input.isEmpty() && !expression.isEmpty() && lastSymbol != '+' && lastSymbol != '-' && lastSymbol != '*' && lastSymbol != '/') {
-                    if(checkIfNumber(lastSymbol))
-                        pushNumberToInput();
-                    try {
-                        result = String.valueOf(prn.getSolution(sy.transformExpressionToPRN(input)));
-                        textArea.setText(result);
-                        clearInput();
-                    } catch (DivisionByZero ex) {
-                        textArea.setText(ex.getMessage());
+                if (!expression.isEmpty()) {
+                    lastSymbol = expression.charAt(expression.length() - 1);
+                    if (!input.isEmpty() && !expression.isEmpty() && !isOperator(String.valueOf(lastSymbol))) {
+                        if (isNumber(String.valueOf(lastSymbol)))
+                            pushNumberToInput();
+                        try {
+                            result = String.valueOf(prn.getSolution(sy.transformExpressionToPRN(input)));
+                            textArea.setText(result);
+                            clearInput();
+                            expression.append(result);
+                        } catch (DivisionByZero ex) {
+                            textArea.setText(ex.getMessage());
+                        }
+                        resultIsDisplayed = true;
                     }
-                    resultIsDisplayed = true;
                 }
             }
         });
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                validateBackOperation();
-                textArea.setText(String.valueOf(expression));
+                if(validateBackOperation())
+                    textArea.setText(String.valueOf(expression));
             }
         });
         clear.addActionListener(new ActionListener() {
@@ -263,89 +312,137 @@ public class CalculatorForm {
         number = "";
     }
 
-    private void clearInput() {
-        expression.delete(0,expression.length());
-        number = "";
-        input.clear();
-    }
-
-    private void validateDotButton() {
-        expressionSize = expression.length();
-        if(expressionSize != 0)
-            lastSymbol = expression.charAt(expressionSize - 1);
-        if(!expression.isEmpty() && lastSymbol != '.' && !number.contains(".") && !number.isEmpty()) {
-            number += dot.getText();
-            expression.append(dot.getText());
+    private void ifResultIsDisplayedSetFalseAndClearInput() {
+        if (resultIsDisplayed) {
+            clearInput();
         }
     }
 
-    private void validateOperator(String sign) {
+    private void clearInput() {
+        expression.delete(0, expression.length());
+        number = "";
+        countLeftBrackets = countRightBrackets = 0;
+        input.clear();
+        resultIsDisplayed = false;
+    }
+
+    private boolean validateDotButton() {
         expressionSize = expression.length();
-        if(expressionSize != 0) {
+        if (expressionSize != 0)
             lastSymbol = expression.charAt(expressionSize - 1);
-            if (lastSymbol != sign.charAt(0) && (lastSymbol == '*' || lastSymbol == '+' ||
-                    lastSymbol == '-' || lastSymbol == '/')) {
+        if (!expression.isEmpty() && lastSymbol != '.' && !number.contains(".") && !number.isEmpty()) {
+            number += dot.getText();
+            expression.append(dot.getText());
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateOperator(String sign) {
+        expressionSize = expression.length();
+        if (expressionSize != 0) {
+            lastSymbol = expression.charAt(expressionSize - 1);
+            if (isOperator(String.valueOf(lastSymbol)) || lastSymbol == '.') {
                 expression.replace(expressionSize - 1, expressionSize, sign);
             } else if (lastSymbol != sign.charAt(0)) {
                 expression.append(sign);
+            } else {
+                return false;
             }
+            return true;
         }
+        return false;
     }
 
-    private void validateBracket(String bracket) {
+    private boolean validateBracket(String bracket) {
         expressionSize = expression.length();
         if (bracket.equals("(") && expressionSize == 0) {
             countLeftBrackets += 1;
             expression.append(bracket);
-            return;
-        }
-        if(expressionSize != 0) {
-            lastSymbol = expression.charAt(expressionSize-1);
-            if (bracket.equals("(") && (lastSymbol == '+' || lastSymbol == '-' || lastSymbol == '*' ||
-                    lastSymbol == '/' || lastSymbol == '(')) {
+        } else if (expressionSize != 0) {
+            lastSymbol = expression.charAt(expressionSize - 1);
+            if (bracket.equals("(") && (isOperator(String.valueOf(lastSymbol)) || lastSymbol == '(')) {
                 countLeftBrackets += 1;
                 expression.append(bracket);
+            } else if (countLeftBrackets > countRightBrackets && !isOperator(String.valueOf(lastSymbol)) && lastSymbol != '.' && lastSymbol != '(') {
+                countRightBrackets += 1;
+                expression.append(bracket);
             }
-            if (lastSymbol != ')' && countLeftBrackets > countRightBrackets) {
-                if (lastSymbol != '+' && lastSymbol != '-' && lastSymbol != '*' &&
-                        lastSymbol != '/' && lastSymbol != '(') {
-                    countRightBrackets += 1;
-                    expression.append(bracket);
-                }
-            }
+        } else {
+            return false;
         }
+        return true;
     }
 
-    private void validateBackOperation() {
+    private boolean validateBackOperation() {
+        String lastNumber = rememberLastNumber();
         expressionSize = expression.length();
-        if(expressionSize != 0 && !input.isEmpty()) {
-            lastSymbol = expression.charAt(expressionSize-1);
-            if (checkIfNumber(lastSymbol) || lastSymbol == '.') {
-                number = number.substring(0,number.length()-1);
-                expression.deleteCharAt(expressionSize-1);
+        if (expressionSize != 0) {
+            lastSymbol = expression.charAt(expressionSize - 1);
+            if (isNumber(String.valueOf(lastSymbol))) {
+                if (lastNumber.length() > 0) {
+                    number = lastNumber.substring(0, lastNumber.length() - 1);
+                    if(!input.isEmpty())
+                        input.remove(input.size() - 1);
+                    pushNumberToInput();
+                } else {
+                    number = "";
+                }
+            } else if (input.size() > 0)
+                input.remove(input.size() - 1);
+            expression.delete(expressionSize - 1, expressionSize);
+            expression.trimToSize();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isNumber(String symbol) {
+        switch (symbol) {
+            case "*", "/", "+", "-", ")", "(" -> {
+                return false;
+            }
+            default -> {
+                return true;
             }
         }
     }
 
-    private boolean checkIfNumber(char symbol) {
-        switch(symbol) {
-            case '*','/','+','-',')','(' -> { return false; }
-            default -> { return true; }
+    private boolean isOperator(String symbol) {
+        switch (symbol) {
+            case "*", "/", "+", "-" -> {
+                return true;
+            }
+            default -> {
+                return false;
+            }
         }
+    }
+
+    private String rememberLastNumber() {
+        if (expression.length() > 1)
+            if(input.size() == 0)
+                return String.valueOf(expression);
+            else if(isNumber(input.get(input.size()-1))) {
+                    return input.get(input.size()-1);
+        } else if (expression.length() > 2)
+            if(isNumber(input.get(input.size() - 2))) {
+                return input.get(input.size() - 2);
+        } else if (expression.length() > 3)
+            if(isNumber(input.get(input.size() - 3))) {
+                return input.get(input.size() - 3);
+        }
+        return "";
     }
 
     public static void main(String[] args) {
-        JFrame mainFrame = new JFrame("Calculator");
         form = new CalculatorForm();
         mainFrame.setContentPane(form.mainPanel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
         mainFrame.pack();
         mainFrame.setVisible(true);
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 }
