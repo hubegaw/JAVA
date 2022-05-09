@@ -1,0 +1,39 @@
+{
+"flights":[
+  {
+    "flightId": 0,
+    "flightNumber": 2796,
+    "departureAirportIATACode": "SEA",
+    "arrivalAirportIATACode": "PPX",
+    "departureDate": "2018-01-31T07:09:21-01:00"
+  },
+  {
+    "flightId": 1,
+    "flightNumber": 9562,
+    "departureAirportIATACode": "LAX",
+    "arrivalAirportIATACode": "GDN",
+    "departureDate": "2020-03-22T11:23:09-01:00"
+  },
+  {
+    "flightId": 2,
+    "flightNumber": 6877,
+    "departureAirportIATACode": "YYT",
+    "arrivalAirportIATACode": "MIT",
+    "departureDate": "2018-01-11T12:02:17-01:00"
+  },
+  {
+    "flightId": 3,
+    "flightNumber": 9053,
+    "departureAirportIATACode": "ANC",
+    "arrivalAirportIATACode": "GDN",
+    "departureDate": "2018-09-19T01:42:08-02:00"
+  },
+  {
+    "flightId": 4,
+    "flightNumber": 3186,
+    "departureAirportIATACode": "YYZ",
+    "arrivalAirportIATACode": "KRK",
+    "departureDate": "2015-07-19T12:28:41-02:00"
+  }
+]
+}
