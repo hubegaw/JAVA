@@ -429,19 +429,7 @@ public class CalculatorForm {
                     return input.get(input.size() - i);
                 }
             }
-        }/*
-        if (expression.length() > 1)
-            if(input.size() == 0)
-                return String.valueOf(expression);
-            else if(isNumber(input.get(input.size()-1))) {
-                    return input.get(input.size()-1);
-        } else if (expression.length() > 2)
-            if(isNumber(input.get(input.size() - 2))) {
-                return input.get(input.size() - 2);
-        } else if (expression.length() > 3)
-            if(isNumber(input.get(input.size() - 3))) {
-                return input.get(input.size() - 3);
-        }*/
+        }
         return "";
     }
 
