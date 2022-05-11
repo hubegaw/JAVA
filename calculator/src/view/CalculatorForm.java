@@ -385,7 +385,8 @@ public class CalculatorForm {
                     number = lastNumber.substring(0, lastNumber.length() - 1);
                     if(!input.isEmpty())
                         input.remove(input.size() - 1);
-                    pushNumberToInput();
+                    if(!isNumber(String.valueOf(input.size()-1)))
+                        pushNumberToInput();
                 } else {
                     number = "";
                 }
@@ -415,13 +416,20 @@ public class CalculatorForm {
             case "*", "/", "+", "-" -> {
                 return true;
             }
-            default -> {
-                return false;
-            }
+            default -> { return false; }
         }
     }
 
     private String rememberLastNumber() {
+        for(int i = 1; i < 4; i++) {
+            if (expression.length() > i) {
+                if (input.size() == 0)
+                    return String.valueOf(expression);
+                else if (isNumber(input.get(input.size() - i))) {
+                    return input.get(input.size() - i);
+                }
+            }
+        }/*
         if (expression.length() > 1)
             if(input.size() == 0)
                 return String.valueOf(expression);
@@ -433,7 +441,7 @@ public class CalculatorForm {
         } else if (expression.length() > 3)
             if(isNumber(input.get(input.size() - 3))) {
                 return input.get(input.size() - 3);
-        }
+        }*/
         return "";
     }
 
