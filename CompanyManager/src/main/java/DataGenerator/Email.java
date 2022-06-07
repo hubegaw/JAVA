@@ -9,7 +9,6 @@ public class Email implements IEmail {
     private String department;
     private String alternateEmail;
     private final String companySuffix = "company.com";
-    private int mailboxCapacity = 700;
 
     public Email(String name, String surname) {
         this.name = name;
@@ -43,10 +42,6 @@ public class Email implements IEmail {
         return this.name + "." + this.surname + "@" + this.department + "." + this.companySuffix;
     }
 
-    @Override
-    public void setMailboxCapacity(int capacity) {
-        this.mailboxCapacity = capacity;
-    }
 
     @Override
     public void setAlternateEmail(String altEmail) {
@@ -61,11 +56,6 @@ public class Email implements IEmail {
     @Override
     public String getEmail() {
         return email;
-    }
-
-    @Override
-    public int getMailboxCapacity() {
-        return mailboxCapacity;
     }
 
     @Override
